@@ -17,7 +17,7 @@ switch ($requestUri) {
     case '/nfl':
     case '/nfl/':
         $siteTitle = 'NFL';
-        $content = '../templates/nfl.php';
+        $content = '../modules/nfl.php';
         include('../templates/base.php');
         break;
 }

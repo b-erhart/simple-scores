@@ -6,7 +6,7 @@
 
         <title><?=$siteTitle?> - Simple Scores</title>
 
-        <link rel="stylesheet" href="./assets/css/new.css"/>
+        <link rel="stylesheet" href="/assets/css/new.css"/>
         <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico"/>
     </head>
     <body>

@@ -1,4 +1,2 @@
-        <main>
-            <h1>NFL</h1>
-            <p>Scores: ...</p>
-        </main>
+        <h1>NFL</h1>
+        <p>Scores: ...</p>

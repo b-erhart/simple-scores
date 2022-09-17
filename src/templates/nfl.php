@@ -22,26 +22,36 @@
                 <p><?=date('H:i', $dateTime);?> CEST</p>
 <?php endif; ?>
             </div>
-            <div class="level-item level has-text-centered">
-                <div class="level-right">
-                    <div>
-                        <p>
-                            <figure class="image is-32x32" style="margin: 0 8px;">
-                                <img src="<?=$match->Team2->TeamIconUrl?>" style="border-radius: 5%;"/>
-                            </figure>
-                            <?=array_slice(explode(' ', trim($match->Team2->TeamName)), -1)[0];?>
-                        </p>
+            <div class="level-item has-text-centered">
+                <div class="level is-mobile">
+                    <div class="level-item">
+                        <p class="is-size-6"><?=array_slice(explode(' ', trim($match->Team2->TeamName)), -1)[0];?></p>
                     </div>
-                </div>
-                <div>
-                    <p>@</p>
-                </div>
-                <div class="level-left">
-                    <div>
-                        <figure class="image is-32x32" style="margin: 0 8px;">
+                    <div class="level-item">
+                        <figure class="image is-32x32">
+                            <img src="<?=$match->Team2->TeamIconUrl?>" style="border-radius: 5%;"/>
+                        </figure>
+                    </div>
+<?php if ($match->MatchIsFinished): ?>
+                    <div class="level-item">
+                        <p class="is-size-4 has-text-weight-bold"><?=$match->MatchResults[0]->PointsTeam2?></p>
+                    </div>
+<?php endif; ?>
+                    <div class="level-item">
+                        <p class="is-size-4 has-text-weight-bold">@</p>
+                    </div>
+<?php if ($match->MatchIsFinished): ?>
+                    <div class="level-item">
+                        <p class="is-size-4 has-text-weight-bold"><?=$match->MatchResults[0]->PointsTeam1?></p>
+                    </div>
+<?php endif; ?>
+                    <div class="level-item">
+                        <figure class="image is-32x32">
                             <img src="<?=$match->Team1->TeamIconUrl?>" style="border-radius: 5%;"/>
                         </figure>
-                        <p><?=array_slice(explode(' ', trim($match->Team1->TeamName)), -1)[0];?></p>
+                    </div>
+                    <div class="level-item">
+                        <p class="is-size-6"><?=array_slice(explode(' ', trim($match->Team1->TeamName)), -1)[0];?></p>
                     </div>
                 </div>
             </div>

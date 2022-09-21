@@ -7,6 +7,10 @@ use GuzzleHttp\Client;
 
 date_default_timezone_set('Europe/Berlin'); 
 
+function last_word(string $multipleWords) : string {
+    return array_slice(explode(' ', trim($multipleWords)), -1)[0];
+}
+
 $client = new Client(['base_uri' => 'https://api.openligadb.de/']);
 
 $currentMatchDayResponse = $client->request('GET', 'getcurrentgroup/nfl');
@@ -19,7 +23,7 @@ $currentMatchesResponse = $client->request('GET', 'getmatchdata/nfl');
 $currentMatchesOpenLigaDB = json_decode($currentMatchesResponse->getBody());
 
 $currentMatchWeek = new MatchWeekDao();
-$currentMatchWeek->name = $currentMatchDayOpenLigaDB->groupName;
+$currentMatchWeek->name = '';
 $currentMatchWeek->matchDays = [];
 
 $previousTime = 0;
@@ -27,6 +31,10 @@ $matchDay = new MatchDayDao();
 $matchDay->matches = [];
 foreach ($currentMatchesOpenLigaDB as $matchOpenLigaDB) {
     $time = strtotime($matchOpenLigaDB->matchDateTimeUTC);
+
+    if ($currentMatchWeek->name == '') {
+        $currentMatchWeek->name = $matchOpenLigaDB->group->groupName;
+    }
 
     if (date('l, j. F Y', $previousTime) != date('l, j. F Y', $time)) {
         if ($previousTime != 0) {
@@ -44,14 +52,16 @@ foreach ($currentMatchesOpenLigaDB as $matchOpenLigaDB) {
     $match->time = date('H:i T', $time);
     $match->homeTeamName = $matchOpenLigaDB->team1->teamName;
     $match->awayTeamName = $matchOpenLigaDB->team2->teamName;
-    $match->homeTeamNameShort = array_slice(explode(' ', trim($match->homeTeamName)), -1)[0];
-    $match->awayTeamNameShort = array_slice(explode(' ', trim($match->awayTeamName)), -1)[0];
+    $match->homeTeamNameShort = last_word($match->homeTeamName);
+    $match->awayTeamNameShort = last_word($match->awayTeamName);
     $match->homeTeamColor = NFL_TEAM_COLORS[$match->homeTeamNameShort];
     $match->awayTeamColor = NFL_TEAM_COLORS[$match->awayTeamNameShort];
     if (!empty($matchOpenLigaDB->matchResults)) {
         $match->homeTeamScore = end($matchOpenLigaDB->matchResults)->pointsTeam1;
         $match->awayTeamScore = end($matchOpenLigaDB->matchResults)->pointsTeam2;
     }
+    // TODO: add correct link generation for post-season matches
+    $match->detailsLink = 'https://nfl.com/games/' . $match->awayTeamNameShort . '-at-' . $match->homeTeamNameShort . '-' . last_word($matchOpenLigaDB->leagueName) . '-reg-' . last_word($matchOpenLigaDB->group->groupName);
 
     array_push($matchDay->matches, $match);
 }

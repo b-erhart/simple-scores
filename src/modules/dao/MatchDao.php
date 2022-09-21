@@ -10,5 +10,6 @@ class MatchDao {
     public string $awayTeamColor;
     public int $homeTeamScore;
     public int $awayTeamScore;
+    public string $detailsLink;
 }
 ?>

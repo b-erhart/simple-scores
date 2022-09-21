@@ -21,7 +21,7 @@
                     <!--<img src="<?=$match->Team1->TeamIconUrl?>"/>-->
                 </div>
             </div>
-            <a class="scorecard-link" href="#">Details</a>
+            <a class="scorecard-link" href="<?=$match->detailsLink?>" target="_blank">Details</a>
         </div>
 <?php endforeach; ?>
 <?php endforeach; ?>

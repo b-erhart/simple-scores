@@ -1,36 +1,27 @@
-<!--        <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-            <option value="">Select match day...</option>
-<?php foreach ($allMatchDays as $matchDay): ?>
-<?php if ($matchDay->GroupName != ''): ?>
-            <option value="./<?=$matchDay->GroupID?>"><?=$matchDay->GroupName?></option>
-<?php endif; ?>
-<?php endforeach; ?>
-        </select> -->
-        <h1>NFL - <?=$currentMatchDay->GroupName?></h1>
-<?php $previousTime = 0; ?>
-<?php foreach ($currentMatches as $match): ?>
-<?php $dateTime = strtotime($match->MatchDateTime); ?>
-<?php if (date('l, j. F Y', $previousTime) != date('l, j. F Y', $dateTime)): ?>
-        <h4><?=date('l, j. F Y', $dateTime);?></h4>
-<?php endif; ?>
+        <h1>NFL - <?=$currentMatchWeek->name?></h1>
+<?php foreach($currentMatchWeek->matchDays as $matchDay): ?>
+        <h4><?=$matchDay->date?></h4>
+<?php foreach($matchDay->matches as $match): ?>
         <div class="scorecard">
             <p class="scorecard-time">
-                <?=($match->MatchIsFinished) ? 'Final' : date('H:i', $dateTime) . ' CEST'?>
+                <?=($match->isFinished) ? 'Final' : $match->time?>
             </p>
             <div class="scorecard-teams">
                 <div class="scorecard-team-left">
-                    <p><?=array_slice(explode(' ', trim($match->Team2->TeamName)), -1)[0];?></p>
-                    <img src="<?=$match->Team2->TeamIconUrl?>"/>
+                    <p><?=$match->awayTeamNameShort?></p>
+                    <div class="scorecard-team-color" style="background: <?=$match->awayTeamColor?>"></div>
+                    <!--<img src="<?=$match->Team2->TeamIconUrl?>"/>-->
                 </div>
                 <p class="scorecard-score">
-                    <?=($match->MatchIsFinished) ? $match->MatchResults[0]->PointsTeam2 . ':' . $match->MatchResults[0]->PointsTeam1 : '@'?>
+                    <?=($match->isFinished) ? $match->awayTeamScore . ':' . $match->homeTeamScore : '@'?>
                 </p>
                 <div class="scorecard-team-right">
-                    <p><?=array_slice(explode(' ', trim($match->Team1->TeamName)), -1)[0];?></p>
-                    <img src="<?=$match->Team1->TeamIconUrl?>"/>
+                    <p><?=$match->homeTeamNameShort?></p>
+                    <div class="scorecard-team-color" style="background: <?=$match->homeTeamColor?>"></div>
+                    <!--<img src="<?=$match->Team1->TeamIconUrl?>"/>-->
                 </div>
             </div>
             <a class="scorecard-link" href="#">Details</a>
         </div>
-<?php $previousTime = $dateTime; ?>
+<?php endforeach; ?>
 <?php endforeach; ?>

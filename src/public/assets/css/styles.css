@@ -280,6 +280,13 @@ a.nav-brand {
     border-radius: var(--corner-radius);
 }
 
+.scorecard-team-color {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--corner-radius);
+}
+
 .scorecard-team-left p, .scorecard-team-right p {
     margin: 0.2rem 0;
     font-size: 1.1rem;
@@ -335,6 +342,11 @@ a.nav-brand {
     .scorecard-team-left img, .scorecard-team-right img {
         height: 3rem;
         border-radius: var(--corner-radius);
+    }
+
+    .scorecard-team-color {
+        width: 30px;
+        height: 30px;
     }
 
     .scorecard-team-left p, .scorecard-team-right p {

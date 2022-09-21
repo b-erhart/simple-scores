@@ -1,0 +1,347 @@
+/* --- Fonts --- */
+@import url(./fonts.css);
+
+/* --- Variables --- */
+:root {
+    /* Light mode colors */
+    --color-primary: #016fb9;
+    --color-primary-alt: #34d1bf;
+    --color-primary-dim: #01497a;
+    --color-primary-alt-dim: #2ab7a6;
+    --color-secondary: #de541e;
+    --color-secondary-alt: #F5AF00;
+    --color-bg: #f5f5f5;
+    --color-bg-secondary: #ffffff;
+    --color-bg-tertiary: #e9e9e9;
+    --color-text: #000000;
+    --color-text-secondary: #666666;
+
+    /* Styling variables */
+    --max-width: 1920px;
+    --border-padding: 3rem;
+    --corner-radius: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Dark mode colors */
+        --color-bg: #141414;
+        --color-bg-secondary: #1f1f20;
+        --color-bg-tertiary: #191919;
+        --color-text: #ffffff;
+        --color-text-secondary: #999999;
+    }
+}
+
+@media (max-width: 767px) {
+    :root {
+        --border-padding: 1.5rem;
+    }
+}
+
+/* --- General --- */
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--border-padding);
+    font-family: 'Open Sans', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+}
+
+/* --- Navbar --- */
+nav {
+    background: var(--color-bg-secondary);
+    width: 100vw;/* make nav as wide as the browser viewport */
+    margin-left: calc(-1 * ((100vw - 100%) / 2)); /* align left edge to the left edge of the viewport */
+    box-sizing: border-box; /* Make sure padding doesn't increase element size */
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--border-padding);
+    font-family: Montserrat, sans-serif;
+}
+
+.nav-left, .nav-center, .nav-right {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+
+.nav-left {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.nav-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-right {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.nav-brand {
+    padding: 0;
+    font-size: 1.5rem;
+    display: flex;
+    font-weight: bold;
+    align-items: center;
+}
+
+a.nav-brand {
+    background-image: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-alt));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+}
+
+.nav-menu {
+    display: none;
+}
+
+.nav-menu a {
+    display: inline-block;
+    justify-content: center;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border-radius: var(--corner-radius);
+    margin: 0 0.25rem;
+}
+
+.nav-menu a:hover {
+    background: var(--color-bg);
+}
+
+.nav-menu a.nav-active {
+    position: relative;
+    display: flex;
+    z-index: 0;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-alt));
+}
+
+.nav-menu a.nav-active:hover {
+    background: linear-gradient(135deg, var(--color-primary-dim), var(--color-primary-alt-dim));
+}
+
+#nav-hamburger-toggle {
+    display: none;
+}
+
+.nav-hamburger {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    width: 1.75rem;
+    height: 1.25rem;
+}
+
+.nav-hamburger span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    left: 0;
+    opacity: 1;
+    background: var(--color-text);
+    border-radius: 0.3rem;
+    transform-origin: 0 0;
+    transition: 0.4s;
+}
+
+.nav-hamburger span:nth-child(1) {
+    top: 0rem;
+}
+
+.nav-hamburger span:nth-child(2) {
+    top: 0.5rem;
+}
+
+.nav-hamburger span:nth-child(3) {
+    top: 1rem;
+}
+
+.nav-hamburger:hover span:nth-child(2) {
+    transform: translateX(0.5rem);
+}
+
+#nav-hamburger-toggle:checked ~ .nav-hamburger span:nth-child(1) {
+    top: 0.6rem;
+    transform-origin: center;
+    transform: rotate(45deg);
+}
+
+#nav-hamburger-toggle:checked ~ .nav-hamburger span:nth-child(2) {
+    transform: translateX(2rem);
+    opacity: 0;
+}
+
+#nav-hamburger-toggle:checked ~ .nav-hamburger span:nth-child(3) {
+    top: 0.6rem;
+    transform-origin: center;
+    transform: rotate(-45deg);
+}
+
+@media (min-width: 768px) {
+    .nav-hamburger {
+        display: none;
+    }
+
+    .nav-menu {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    #nav-hamburger-toggle:checked ~ .nav-menu {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: fit-content;
+        margin-top: 5rem;
+        padding: 0 var(--border-padding);
+        background: var(--color-bg-tertiary);
+        box-sizing: border-box;
+    }
+
+    #nav-hamburger-toggle:checked ~ .nav-menu a {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 0.5rem;
+        margin: 0.75rem 0;
+        border-radius: var(--corner-radius);
+        box-sizing: border-box;
+    }
+}
+
+/* --- Scores --- */
+.scorecard {
+    height: fit-content;
+    background: var(--color-bg-secondary);
+    padding: 1rem;
+    margin: 1rem 0;
+    box-sizing: border-box;
+    border-radius: var(--corner-radius);
+
+    display: block;
+    align-items: center;
+}
+
+.scorecard-teams {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 37.5% 25% 37.5%;
+    margin: 1rem 0;
+}
+
+.scorecard-time {
+    text-align: center;
+    margin: 0;
+}
+
+.scorecard-team-left {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.scorecard-score {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.scorecard-team-right {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.scorecard-team-left img, .scorecard-team-right img {
+    max-height: 5rem;
+    max-width: 100%;
+    border-radius: var(--corner-radius);
+}
+
+.scorecard-team-left p, .scorecard-team-right p {
+    margin: 0.2rem 0;
+    font-size: 1.1rem;
+    
+}
+
+.scorecard-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+}
+
+@media (min-width: 768px) {
+    .scorecard {
+        height: fit-content;
+        background: var(--color-bg-secondary);
+        padding: 0.5rem 1rem;
+        margin: 1rem 0;
+        box-sizing: border-box;
+        border-radius: var(--corner-radius);
+    
+        display: grid;
+        grid-template-columns: 10% auto 10%;
+        align-items: center;
+    }
+
+    .scorecard-teams {
+        display: grid;
+        grid-template-columns: auto fit-content auto;
+    }
+    
+    .scorecard-time {
+        text-align: left;
+    }
+    
+    .scorecard-team-left {
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+    }
+    
+    .scorecard-score {
+        text-align: center;
+    }
+    
+    .scorecard-team-right {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: left;
+    }
+    
+    .scorecard-team-left img, .scorecard-team-right img {
+        height: 3rem;
+        border-radius: var(--corner-radius);
+    }
+
+    .scorecard-team-left p, .scorecard-team-right p {
+        margin: 0 0.5rem;
+    }
+    
+    .scorecard-link {
+        text-align: right;
+    }
+}

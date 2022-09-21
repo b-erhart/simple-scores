@@ -6,38 +6,32 @@
 
         <title><?=$siteTitle?> - Simple Scores</title>
         
-        <link rel="stylesheet" href="/assets/css/bulmaswatch-lumen.min.css"/>
+        <link rel="stylesheet" href="/assets/css/styles.css"/>
         <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico"/>
     </head>
     <body>
-        <nav class="navbar is-primary" role="navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="/"><strong>Simple Scores</strong></a>
-                <a class="navbar-burger" id="navbar-burger-icon">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <nav>
+            <input type="checkbox" id="nav-hamburger-toggle">
+            <div class="nav-left">
+                <a class="nav-brand">Simple Scores</a>
+            </div>
+            <div class="nav-right nav-menu">
+                <a href="/" <?=($requestUri == '' || $requestUri == '/') ? 'class="nav-active"' : ''?>>
+                    Home
+                </a>
+                <a href="/bundesliga" <?=($requestUri == '/bundesliga' || $requestUri == '/bundesliga/') ? 'class="nav-active"' : ''?>>
+                    Bundesliga
+                </a>
+                <a href="/nfl" <?=($requestUri == '/nfl' || $requestUri == '/nfl/') ? 'class="nav-active"' : ''?>>
+                    NFL
                 </a>
             </div>
-            <div class="navbar-menu navbar-end" id="navbar-menu">
-                <a class="navbar-item" href="/">Home</a>
-                <a class="navbar-item" href="/bundesliga">Bundesliga</a>
-                <a class="navbar-item" href="/nfl">NFL</a>
-            </div>
-            <script>
-                const navbarBurgerIcon = document.querySelector("#navbar-burger-icon");
-                const navbarMenu = document.querySelector("#navbar-menu");
-
-                navbarBurgerIcon.addEventListener('click', () => {
-                    navbarBurgerIcon.classList.toggle('is-active');
-                    navbarMenu.classList.toggle('is-active');
-                });
-            </script>
+            <label for="nav-hamburger-toggle" class="nav-hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
         </nav>
-        <section class="section">
-            <div class="container">
 <?php include($content) ?>
-            </div>
-        </section>
     </body>
 </html>

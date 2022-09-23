@@ -1,6 +1,6 @@
 <?php
 require_once '../vendor/autoload.php';
-require_once __DIR__ . './dao/MatchWeekDao.php';
+require_once __DIR__ . '/dao/MatchWeekDao.php';
 require_once '../config.php';
 
 use GuzzleHttp\Client;

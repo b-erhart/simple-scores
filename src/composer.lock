@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0c8d8bcc1a0ef36d50280213dabd481",
+    "content-hash": "c6ca8dac536f571d35d032126eef87bf",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -540,6 +540,49 @@
                 "source": "https://github.com/ralouphie/getallheaders/tree/develop"
             },
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "steampixel/simple-php-router",
+            "version": "0.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/steampixel/simplePHPRouter.git",
+                "reference": "91aec2d0bca3619c0552e2bfcebb8936e6f83bb9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/steampixel/simplePHPRouter/zipball/91aec2d0bca3619c0552e2bfcebb8936e6f83bb9",
+                "reference": "91aec2d0bca3619c0552e2bfcebb8936e6f83bb9",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Steampixel": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Stitz",
+                    "email": "info@steampixel.de",
+                    "homepage": "https://steampixel.de/"
+                },
+                {
+                    "name": "Maximilian Götz",
+                    "email": "contact@maxbits.net",
+                    "homepage": "https://www.maxbits.net/"
+                }
+            ],
+            "description": "This is a simple and small PHP router that can handel the whole url routing for your project.",
+            "support": {
+                "issues": "https://github.com/steampixel/simplePHPRouter/issues",
+                "source": "https://github.com/steampixel/simplePHPRouter/tree/0.7.0"
+            },
+            "time": "2021-03-22T08:11:59+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

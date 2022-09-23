@@ -16,13 +16,13 @@
                 <a class="nav-brand">Simple Scores</a>
             </div>
             <div class="nav-right nav-menu">
-                <a href="/" <?=($requestUri == '' || $requestUri == '/') ? 'class="nav-active"' : ''?>>
+                <a href="/" <?=($siteTitle == 'Home') ? 'class="nav-active"' : ''?>>
                     Home
                 </a>
-                <a href="/bundesliga" <?=($requestUri == '/bundesliga' || $requestUri == '/bundesliga/') ? 'class="nav-active"' : ''?>>
+                <a href="/bundesliga" <?=($siteTitle == '1. Bundesliga') ? 'class="nav-active"' : ''?>>
                     Bundesliga
                 </a>
-                <a href="/nfl" <?=($requestUri == '/nfl' || $requestUri == '/nfl/') ? 'class="nav-active"' : ''?>>
+                <a href="/nfl" <?=($siteTitle == 'NFL') ? 'class="nav-active"' : ''?>>
                     NFL
                 </a>
             </div>

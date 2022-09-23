@@ -32,5 +32,6 @@ const NFL_TEAM_COLORS = [
     "Texans" => "#05354D",
     "Titans" => "#06192e",
     "Vikings" => "#4f2683",
+    "TBD" => "#777777",
 ];
 ?>

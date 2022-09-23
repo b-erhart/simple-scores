@@ -1,6 +1,7 @@
 <?php
 require_once '../vendor/autoload.php';
 require_once __DIR__ . '/dao/MatchWeekDao.php';
+require_once __DIR__ . '/dao/MatchDayMetaDao.php';
 require_once '../config.php';
 
 use GuzzleHttp\Client;
@@ -13,14 +14,20 @@ function last_word(string $multipleWords) : string {
 
 $client = new Client(['base_uri' => 'https://api.openligadb.de/']);
 
+
 $currentMatchDayResponse = $client->request('GET', 'getcurrentgroup/nfl');
 $currentMatchDayOpenLigaDB = json_decode($currentMatchDayResponse->getBody());
 
-// $allMatchDaysResponse = $client->request('GET', 'getavailablegroups/nfl/2022');
-// $allMatchDays = json_decode($allMatchDaysResponse->getBody());
+$allMatchDaysResponse = $client->request('GET', 'getavailablegroups/nfl/2022');
+$allMatchDaysOpenLigaDB = json_decode($allMatchDaysResponse->getBody());
 
-$currentMatchesResponse = $client->request('GET', 'getmatchdata/nfl');
-$currentMatchesOpenLigaDB = json_decode($currentMatchesResponse->getBody());
+if ($weekId == '') {
+    $currentMatchesResponse = $client->request('GET', 'getmatchdata/nfl');
+    $currentMatchesOpenLigaDB = json_decode($currentMatchesResponse->getBody());
+} else {
+    $currentMatchesResponse = $client->request('GET', 'getmatchdata/nfl/2022/' . $weekId);
+    $currentMatchesOpenLigaDB = json_decode($currentMatchesResponse->getBody());
+}
 
 $currentMatchWeek = new MatchWeekDao();
 $currentMatchWeek->name = '';
@@ -34,6 +41,7 @@ foreach ($currentMatchesOpenLigaDB as $matchOpenLigaDB) {
 
     if ($currentMatchWeek->name == '') {
         $currentMatchWeek->name = $matchOpenLigaDB->group->groupName;
+        $weekId = $matchOpenLigaDB->group->groupOrderID;
     }
 
     if (date('l, j. F Y', $previousTime) != date('l, j. F Y', $time)) {
@@ -64,6 +72,22 @@ foreach ($currentMatchesOpenLigaDB as $matchOpenLigaDB) {
     $match->detailsLink = 'https://nfl.com/games/' . $match->awayTeamNameShort . '-at-' . $match->homeTeamNameShort . '-' . last_word($matchOpenLigaDB->leagueName) . '-reg-' . last_word($matchOpenLigaDB->group->groupName);
 
     array_push($matchDay->matches, $match);
+}
+
+array_push($currentMatchWeek->matchDays, $matchDay);
+
+$allMatchDaysMeta = [];
+foreach ($allMatchDaysOpenLigaDB as $matchDayOpenLigaDB) {
+    if ($matchDayOpenLigaDB->groupName == '') {
+        break;
+    }
+
+    $matchDay = new MatchDayMetaDao();
+    $matchDay->name = $matchDayOpenLigaDB->groupName;
+    $matchDay->id = $matchDayOpenLigaDB->groupOrderID;
+    $matchDay->link = '/nfl/' . $matchDay->id;
+
+    array_push($allMatchDaysMeta, $matchDay);
 }
 
 include('../templates/nfl.php');

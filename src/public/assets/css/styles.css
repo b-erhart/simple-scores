@@ -54,11 +54,32 @@ a {
     color: var(--color-primary);
 }
 
+select {
+    display: block;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    text-decoration: none;
+    border: none;
+    border-right: 0.25rem solid transparent;
+    border-radius: var(--corner-radius);
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    select {
+        width: fit-content;
+    }
+}
+
 /* --- Navbar --- */
 nav {
     background: var(--color-bg-secondary);
-    width: 100vw;/* make nav as wide as the browser viewport */
+    width: calc(100% + 2 * var(--border-padding));
     margin-left: calc(-1 * ((100vw - 100%) / 2)); /* align left edge to the left edge of the viewport */
+    margin-bottom: 2rem;
     box-sizing: border-box; /* Make sure padding doesn't increase element size */
     height: 5rem;
     display: flex;
@@ -213,8 +234,9 @@ a.nav-brand {
         position: absolute;
         top: 0;
         left: 0;
-        width: 100vw;
+        width: 100%;
         height: fit-content;
+        margin: 0;
         margin-top: 5rem;
         padding: 0 var(--border-padding);
         background: var(--color-bg-tertiary);

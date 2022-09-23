@@ -16,6 +16,14 @@ Route::add('/bundesliga', function() {
 });
 
 Route::add('/nfl', function() {
+    $weekId = '';
+    $siteTitle = 'NFL';
+    $content = '../modules/nfl.php';
+    include('../templates/base.php');
+});
+
+Route::add('/nfl/([0-9]*)', function($id) {
+    $weekId = $id;
     $siteTitle = 'NFL';
     $content = '../modules/nfl.php';
     include('../templates/base.php');

@@ -7,7 +7,7 @@
         <title><?=$siteTitle?> - Simple Scores</title>
         
         <link rel="stylesheet" href="/assets/css/styles.css"/>
-        <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico"/>
+        <link rel="icon" type="image/x-icon" href="/favicon.png"/>
     </head>
     <body>
         <nav>

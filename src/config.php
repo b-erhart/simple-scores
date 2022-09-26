@@ -34,4 +34,55 @@ const NFL_TEAM_COLORS = [
     "Vikings" => "#4f2683",
     "TBD" => "#777777",
 ];
+
+const NFL_TEAM_DIVISIONS = [
+    "AFC East" => [
+        "Bills",
+        "Dolphins",
+        "Jets",
+        "Patriots",
+    ],
+    "AFC South" => [
+        "Colts",
+        "Jaguars",
+        "Texans",
+        "Titans",
+    ],
+    "AFC West" => [
+        "Broncos",
+        "Chargers",
+        "Chiefs",
+        "Raiders",
+    ],
+    "AFC North" => [
+        "Bengals",
+        "Browns",
+        "Ravens",
+        "Steelers",
+    ],
+    "NFC East" => [
+        "Commanders",
+        "Cowboys",
+        "Eagles",
+        "Giants",
+    ],
+    "NFC South" => [
+        "Buccaneers",
+        "Falcons",
+        "Panthers",
+        "Saints",
+    ],
+    "NFC West" => [
+        "49ers",
+        "Cardinals",
+        "Rams",
+        "Seahawks",
+    ],
+    "NFC North" => [
+        "Bears",
+        "Lions",
+        "Packers",
+        "Vikings",
+    ],
+];
 ?>

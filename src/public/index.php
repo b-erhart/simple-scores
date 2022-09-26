@@ -22,6 +22,12 @@ Route::add('/nfl', function() {
     include('../templates/base.php');
 });
 
+Route::add('/nfl/standings', function() {
+    $siteTitle = 'NFL';
+    $content = '../modules/nfl-standings.php';
+    include('../templates/base.php');
+});
+
 Route::add('/nfl/([0-9]*)', function($id) {
     $weekId = $id;
     $siteTitle = 'NFL';

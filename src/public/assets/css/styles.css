@@ -35,7 +35,7 @@
 
 @media (max-width: 767px) {
     :root {
-        --border-padding: 1.5rem;
+        --border-padding: 0.75rem;
     }
 }
 
@@ -50,8 +50,26 @@ body {
 }
 
 a {
-    text-decoration: none;
     color: var(--color-primary);
+}
+
+a.button-style {
+    display: block;
+    padding: 0.5rem 0.5rem;
+    height: fit-content;
+    background: var(--color-bg-secondary);
+    color: var(--color-text);
+    text-decoration: none;
+    border: none;
+    border-radius: var(--corner-radius);
+    margin: 0.5rem auto;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+a.button-style:hover {
+    background: var(--color-bg-tertiary);
 }
 
 select {
@@ -64,13 +82,43 @@ select {
     border: none;
     border-right: 0.25rem solid transparent;
     border-radius: var(--corner-radius);
-    margin: 0 auto;
+    margin: 0.5rem auto;
     width: 100%;
+}
+
+.local-nav {
+    background: var(--color-bg-tertiary);
+    width: calc(100% + 2 * var(--border-padding));
+    margin-left: calc(-1 * ((100vw - 100%) / 2)); /* align left edge to the left edge of the viewport */
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    box-sizing: border-box; /* Make sure padding doesn't increase element size */
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    column-gap: 0.5rem;
+    padding: 0 var(--border-padding);
+}
+
+.local-nav a.local-nav-active {
+    color: var(--color-text);
+    text-decoration: none;
 }
 
 @media (min-width: 768px) {
     select {
         width: fit-content;
+        margin: 0 auto;
+    }
+
+    a.button-style {
+        width: fit-content;
+        margin: 0;
+    }
+
+    .local-nav {
+        justify-content: right;
     }
 }
 
@@ -378,4 +426,68 @@ a.nav-brand {
     .scorecard-link {
         text-align: right;
     }
+}
+
+/* --- Standings --- */
+.standings-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .standings-grid {
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+}
+
+.standingscard {
+    height: fit-content;
+    background: var(--color-bg-secondary);
+    padding: 1rem;
+    margin: 1rem 0;
+    box-sizing: border-box;
+    border-radius: var(--corner-radius);
+
+    display: block;
+    align-items: center;
+}
+
+.standingscard-title {
+    margin-top: 0;
+}
+
+.standingscard table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.standingscard th, .standingscard td {
+    padding: 0.5rem;
+}
+
+.standingscard th {
+    text-align: left;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--color-text);
+}
+
+.standingscard td {
+    border-bottom: 0.5px solid var(--color-text-secondary);
+}
+
+.standingscard-icon-column {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.standingscard-team-color {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: var(--corner-radius);
+    margin-right: 0.25rem;
 }

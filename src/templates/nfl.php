@@ -1,3 +1,7 @@
+        <div class="local-nav">
+            <a class="local-nav-active">Scores</a>
+            <a href="/nfl/standings">Standings</a>
+        </div>
         <select id="week" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
 <?php foreach($allMatchDaysMeta as $matchDayMeta): ?>
             <option <?=($weekId == $matchDayMeta->id) ? 'selected ' : ''?>value="<?=$matchDayMeta->link?>"><?=$matchDayMeta->name?></option>
@@ -26,7 +30,7 @@
                     <!--<img src="<?=$match->Team1->TeamIconUrl?>"/>-->
                 </div>
             </div>
-            <a class="scorecard-link" href="<?=$match->detailsLink?>" target="_blank">Details</a>
+            <a class="scorecard-link" href="<?=$match->detailsLink?>" target="_blank">Details↗</a>
         </div>
 <?php endforeach; ?>
 <?php endforeach; ?>

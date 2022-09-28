@@ -28,4 +28,8 @@
             </div>
 <?php endforeach; ?>
         </div>
-        <p>* <a name="tie-break-hint" href="https://www.nfl.com/standings/tie-breaking-procedures">NFL tie breaking procedures↗</a> apply, but are not taken into account for this representation of the standings.</p>
+        <p>Legend:<br/>
+        <strong>REC</strong> - Record<br/>
+        <strong>PTS</strong> - Points<br/>
+        <strong>NP</strong> - Net Points</p>
+        <p>* <a name="tie-break-hint" href="https://www.nfl.com/standings/tie-breaking-procedures" target="_blank">NFL tie breaking procedures↗</a> apply, but are not taken into account for this representation of the standings.</p>

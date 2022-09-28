@@ -13,7 +13,7 @@
         <nav>
             <input type="checkbox" id="nav-hamburger-toggle">
             <div class="nav-left">
-                <a class="nav-brand">Simple Scores</a>
+                <a href="/" class="nav-brand">Simple Scores</a>
             </div>
             <div class="nav-right nav-menu">
                 <a href="/" <?=($siteTitle == 'Home') ? 'class="nav-active"' : ''?>>

@@ -86,6 +86,11 @@ select {
     width: 100%;
 }
 
+abbr {
+    text-decoration: none;
+    cursor: help;
+}
+
 .local-nav {
     background: var(--color-bg-tertiary);
     width: calc(100% + 2 * var(--border-padding));
@@ -163,6 +168,7 @@ nav {
     display: flex;
     font-weight: bold;
     align-items: center;
+    text-decoration: none;
 }
 
 a.nav-brand {

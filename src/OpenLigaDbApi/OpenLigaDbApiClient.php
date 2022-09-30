@@ -9,9 +9,9 @@ function last_word(string $multipleWords) : string {
     return array_slice(explode(' ', trim($multipleWords)), -1)[0];
 }
 
-enum DetailsLinkType {
-    case Nfl;
-    case Bundesliga;
+abstract class DetailsLinkType {
+    const Nfl = 0;
+    const Bundesliga = 1;
 }
 
 class OpenLigaDbApiClient {
@@ -41,13 +41,13 @@ class OpenLigaDbApiClient {
         return $this->apiResponseToMatchweekMeta($apiResponse);
     }
 
-    public function getMatchweek(string $league, string $season, int $inSeasonId, array $teamColors, DetailsLinkType $detailsLinkType) : Matchweek {
+    public function getMatchweek(string $league, string $season, int $inSeasonId, array $teamColors, int $detailsLinkType) : Matchweek {
         $apiResponseArray = json_decode($this->httpClient->request('GET', 'getmatchdata/' . $league . '/' . $season . '/' . $inSeasonId)->getBody());
 
         return $this->apiResponseArrayToMatchweek($apiResponseArray, $teamColors, $detailsLinkType);
     }
 
-    public function getCurrentMatchweek(string $league, array $teamColors, DetailsLinkType $detailsLinkType) : Matchweek {
+    public function getCurrentMatchweek(string $league, array $teamColors, int $detailsLinkType) : Matchweek {
         $apiResponseArray = json_decode($this->httpClient->request('GET', 'getmatchdata/' . $league)->getBody());
 
         return $this->apiResponseArrayToMatchweek($apiResponseArray, $teamColors, $detailsLinkType);
@@ -67,7 +67,7 @@ class OpenLigaDbApiClient {
         );
     }
 
-    private function apiResponseArrayToMatchweek($apiResponseArray, array $teamColors, DetailsLinkType $detailsLinkType) : Matchweek {
+    private function apiResponseArrayToMatchweek($apiResponseArray, array $teamColors, int $detailsLinkType) : Matchweek {
         $matchweek = new Matchweek();
 
         $firstIteration = true;
@@ -145,11 +145,15 @@ class OpenLigaDbApiClient {
         return $standingsEntries;
     }
 
-    private function generateDetailsLink(DetailsLinkType $detailsLinkType, array $parameters) : string {
-        return match($detailsLinkType) {
-            DetailsLinkType::Nfl => $this->generateNflDetailsLink($parameters),
-            DetailsLinkType::Bundesliga => $this->generateBundesligaDetailsLink($parameters)
-        };
+    private function generateDetailsLink(int $detailsLinkType, array $parameters) : string {
+        switch ($detailsLinkType) {
+            case DetailsLinkType::Nfl:
+                return $this->generateNflDetailsLink($parameters);
+            case DetailsLinkType::Bundesliga:
+                return $this->generateBundesligaDetailsLink($parameters);
+        }
+
+        return null;
     }
 
     private function generateNflDetailsLink(array $parameters) : string {

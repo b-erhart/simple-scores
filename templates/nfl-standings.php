@@ -1,3 +1,4 @@
+<?php include(__DIR__ . '/../src/Nfl/NflStandings.php'); ?>
             <nav class="local-nav">
                 <div class="local-nav-items">
                     <a href="/nfl">Scores</a>
@@ -8,9 +9,9 @@
         <main>
             <h1>NFL Standings</h1>
             <div class="standings-grid">
-<?php foreach ($divisions as $division): ?>
+<?php foreach ($divisions as $division => $entries): ?>
                 <div class="card standings">
-                    <h3 class="standings-title"><?=$division->name?></h3>
+                    <h3 class="standings-title"><?=$division?></h3>
                     <table>
                         <tr>
                             <th>#</th>
@@ -19,7 +20,7 @@
                             <th><abbr title="Points">Pts</abbr></th>
                             <th><abbr title="Net Points">NP</abbr></th>
                         </tr>
-<?php $i = 1; $rank = 1; $previousRecord = ''; foreach ($division->entries as $entry): ?>
+<?php $i = 1; $rank = 1; $previousRecord = ''; foreach ($entries as $entry): ?>
                         <tr>
                             <td><?=($previousRecord != $entry->record) ? $rank = $i : $rank?><?=($entry->divisionRivalHasEqualRecord) ? '<a href="#tie-break-hint">*</a>' : ''?></td>
                             <td><div class="team-badge" style="--team-color: <?=$entry->teamColor?>"><?=$entry->team?></div></td>

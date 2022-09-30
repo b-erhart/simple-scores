@@ -1,5 +1,7 @@
 <?php
-class MatchDao {
+namespace SimpleScores\OpenLigaDbApi;
+
+class Matchup {
     public bool $isFinished;
     public string $time;
     public string $homeTeamName;

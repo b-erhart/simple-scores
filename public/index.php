@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config/config.php';
 
 use Steampixel\Route;
 
@@ -16,22 +17,22 @@ Route::add('/bundesliga', function() {
 });
 
 Route::add('/nfl', function() {
-    $weekId = '';
+    $selectedWeek = '';
     $siteTitle = 'NFL';
-    $content = '../src/nfl.php';
+    $content = '../templates/nfl-scores.php';
     include('../templates/base.php');
 });
 
 Route::add('/nfl/standings', function() {
     $siteTitle = 'NFL';
-    $content = '../src/nfl-standings.php';
+    $content = '../templates/nfl-standings.php';
     include('../templates/base.php');
 });
 
 Route::add('/nfl/([0-9]*)', function($id) {
-    $weekId = $id;
+    $selectedWeek = $id;
     $siteTitle = 'NFL';
-    $content = '../src/nfl.php';
+    $content = '../templates/nfl-scores.php';
     include('../templates/base.php');
 });
 

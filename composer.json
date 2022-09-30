@@ -4,7 +4,11 @@
         "steampixel/simple-php-router": "^0.7.0"
     },
     "config": {
-
         "platform-check": false
+    },
+    "autoload": {
+        "psr-4": {
+            "SimpleScores\\": "src/"
+        }
     }
 }

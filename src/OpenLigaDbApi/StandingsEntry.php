@@ -1,5 +1,7 @@
 <?php
-class NflStandingsEntryDao {
+namespace SimpleScores\OpenLigaDbApi;
+
+class StandingsEntry {
     public string $team;
     public string $teamColor;
     public string $record;

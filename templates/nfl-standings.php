@@ -25,7 +25,7 @@
                             <td><?=($previousRecord != $entry->record) ? $rank = $i : $rank?><?=($entry->divisionRivalHasEqualRecord) ? '<a href="#tie-break-hint">*</a>' : ''?></td>
                             <td><div class="team-badge" style="--team-color: <?=$entry->teamColor?>"><?=$entry->team?></div></td>
                             <td><?=$entry->record?></td>
-                            <td><?=$entry->points?></td>
+                            <td><?=$entry->pointsFor . '-' . $entry->pointsAgainst?></td>
                             <td><?=$entry->netPoints?></td>
                         </tr>
 <?php $i++; $previousRecord = $entry->record; endforeach; ?>

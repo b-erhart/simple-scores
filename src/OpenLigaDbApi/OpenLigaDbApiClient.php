@@ -53,10 +53,10 @@ class OpenLigaDbApiClient {
         return $this->apiResponseArrayToMatchweek($apiResponseArray, $teamColors, $detailsLinkType);
     }
 
-    public function getStandings(string $league, string $season) : StandingsEntryArray {
+    public function getStandings(string $league, string $season, array $teamColors) : StandingsEntryArray {
         $apiResponseArray = json_decode($this->httpClient->request('GET', 'getbltable/' . $league . '/' . $season)->getBody());
 
-        return $this->apiResponseArrayToStandingsEntryArray($apiResponseArray);
+        return $this->apiResponseArrayToStandingsEntryArray($apiResponseArray, $teamColors);
     }
 
     private function apiResponseToMatchweekMeta($apiResponse) : MatchweekMeta {
@@ -98,13 +98,13 @@ class OpenLigaDbApiClient {
             $matchup->time = date('H:i T', $dateTime);
             $matchup->homeTeamName = $apiResponse->team1->teamName;
             $matchup->awayTeamName = $apiResponse->team2->teamName;
-            $matchup->homeTeamNameShort = last_word($matchup->homeTeamName);
-            $matchup->awayTeamNameShort = last_word($matchup->awayTeamName);
+            $matchup->homeTeamNameShort = ($apiResponse->team1->shortName != '') ? $apiResponse->team1->shortName : last_word($matchup->homeTeamName);
+            $matchup->awayTeamNameShort = ($apiResponse->team2->shortName != '') ? $apiResponse->team2->shortName : last_word($matchup->awayTeamName);
             $matchup->homeTeamColor = $teamColors[$matchup->homeTeamNameShort];
             $matchup->awayTeamColor = $teamColors[$matchup->awayTeamNameShort];
             if (!empty($apiResponse->matchResults)) {
-                $matchup->homeTeamScore = end($apiResponse->matchResults)->pointsTeam1;
-                $matchup->awayTeamScore = end($apiResponse->matchResults)->pointsTeam2;
+                $matchup->homeTeamScore = reset($apiResponse->matchResults)->pointsTeam1;
+                $matchup->awayTeamScore = reset($apiResponse->matchResults)->pointsTeam2;
             }
             $matchup->detailsLink = $this->generateDetailsLink($detailsLinkType, [
                 'inSeasonId' => $matchweek->getInSeasonId(),
@@ -116,23 +116,28 @@ class OpenLigaDbApiClient {
             $matchday->addMatchup($matchup);
         }
 
+        $matchweek->addMatchday($matchday);
+
         return $matchweek;
     }
 
-    private function apiResponseArrayToStandingsEntryArray($apiResponseArray) : StandingsEntryArray {
+    private function apiResponseArrayToStandingsEntryArray($apiResponseArray, array $teamColors) : StandingsEntryArray {
         $standingsEntries = new StandingsEntryArray();
 
         foreach ($apiResponseArray as $apiResponse) {
             $standingsEntry = new StandingsEntry();
 
-            $standingsEntry->team = last_word($apiResponse->teamName);
-            $standingsEntry->teamColor = NFL_TEAM_COLORS[$standingsEntry->team];
+            $standingsEntry->team = ($apiResponse->shortName != '') ? $apiResponse->shortName : last_word($apiResponse->teamName);
+            $standingsEntry->teamColor = $teamColors[$standingsEntry->team];
+            $standingsEntry->matches = $apiResponse->matches;
             $standingsEntry->record = $apiResponse->won . '-' . $apiResponse->lost . (($apiResponse->draw != 0) ? '-' . $apiResponse->draw : '');
             $standingsEntry->wins = $apiResponse->won;
             $standingsEntry->losses = $apiResponse->lost;
             $standingsEntry->ties = $apiResponse->draw;
-            $standingsEntry->points = $apiResponse->goals . '-' . $apiResponse->opponentGoals;
+            $standingsEntry->pointsFor = $apiResponse->goals;
+            $standingsEntry->pointsAgainst = $apiResponse->opponentGoals;
             $standingsEntry->netPoints = $apiResponse->goalDiff;
+            $standingsEntry->tablePoints = $apiResponse->points;
         
             $standingsEntries->add($standingsEntry);
         }

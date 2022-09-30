@@ -11,8 +11,22 @@ Route::add('/', function() {
 });
 
 Route::add('/bundesliga', function() {
+    $selectedWeek = '';
     $siteTitle = '1. Bundesliga';
-    $content = '../templates/bundesliga.php';
+    $content = '../templates/bundesliga-scores.php';
+    include('../templates/base.php');
+});
+
+Route::add('/bundesliga/standings', function() {
+    $siteTitle = '1. Bundesliga';
+    $content = '../templates/bundesliga-standings.php';
+    include('../templates/base.php');
+});
+
+Route::add('/bundesliga/([0-9]*)', function($id) {
+    $selectedWeek = $id;
+    $siteTitle = '1. Bundesliga';
+    $content = '../templates/bundesliga-scores.php';
     include('../templates/base.php');
 });
 

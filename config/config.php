@@ -85,4 +85,25 @@ const NFL_TEAM_DIVISIONS = [
         "Vikings",
     ],
 ];
+
+const BL_TEAM_COLORS = [
+    "Augsburg" => "#b92a1c",
+    "Bayern" => "#c7282d",
+    "Bochum" => "#2b5aa2",
+    "Bremen" => "#52a66b",
+    "BVB" => "#f7e13d",
+    "Frankfurt" => "#c9291b",
+    "Freiburg" => "#e40520",
+    "Gladbach" => "#36703d",
+    "Hertha" => "#254b9c",
+    "Hoffenheim" => "#3360b3",
+    "Köln" => "#cb291a",
+    "Leipzig" => "#da0034",
+    "Leverkusen" => "#e52f19",
+    "Mainz" => "#b0251e",
+    "Schalke" => "#24499a",
+    "Stuttgart" => "#c02626",
+    "Union Berlin" => "#c02626",
+    "Wolfsburg" => "#c02626",
+];
 ?>

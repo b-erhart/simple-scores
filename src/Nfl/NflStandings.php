@@ -39,7 +39,7 @@ const SEASON = '2022';
 
 $openLigaDbClient = new OpenLigaDbApiClient();
 
-$overallStandings = $openLigaDbClient->getStandings(LEAGUE_NFL, SEASON)->getArray();
+$overallStandings = $openLigaDbClient->getStandings(LEAGUE_NFL, SEASON, NFL_TEAM_COLORS)->getArray();
 $overallMappedStandings = [];
 
 foreach ($overallStandings as $standing) {

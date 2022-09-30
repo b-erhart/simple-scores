@@ -418,3 +418,17 @@ nav {
 .standings td {
     border-bottom: 0.05rem solid var(--color-text-secondary);
 }
+
+th.standings-optional, td.standings-optional {
+    display: none;
+}
+
+@media (min-width: 48em) {
+    th.standings-optional, td.standings-optional {
+        display: table-cell;
+    }
+
+    .standings-stretch {
+        width: 66%;
+    }
+}

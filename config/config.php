@@ -104,6 +104,6 @@ const BL_TEAM_COLORS = [
     "Schalke" => "#24499a",
     "Stuttgart" => "#c02626",
     "Union Berlin" => "#c02626",
-    "Wolfsburg" => "#c02626",
+    "Wolfsburg" => "#7bb23b",
 ];
 ?>

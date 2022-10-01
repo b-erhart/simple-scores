@@ -12,7 +12,7 @@ $currentMatchweekInSeasonId = $openLigaDbClient->getCurrentMatchweekMeta(LEAGUE_
 $allMatchweekMetas = $openLigaDbClient->getAllMatchweekMetas(LEAGUE_BL, SEASON)->getArray();
 
 if ($selectedWeek == '') {
-    $matchweek = $openLigaDbClient->getCurrentMatchweek(LEAGUE_BL, BL_TEAM_COLORS, DetailsLinkType::Bundesliga);
+    $matchweek = $openLigaDbClient->getCurrentMatchweek(LEAGUE_BL, SEASON, BL_TEAM_COLORS, DetailsLinkType::Bundesliga);
     $selectedWeek = $matchweek->getInSeasonId();
 }
 else {

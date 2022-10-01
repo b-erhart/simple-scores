@@ -47,10 +47,9 @@ class OpenLigaDbApiClient {
         return $this->apiResponseArrayToMatchweek($apiResponseArray, $teamColors, $detailsLinkType);
     }
 
-    public function getCurrentMatchweek(string $league, array $teamColors, int $detailsLinkType) : Matchweek {
-        $apiResponseArray = json_decode($this->httpClient->request('GET', 'getmatchdata/' . $league)->getBody());
-
-        return $this->apiResponseArrayToMatchweek($apiResponseArray, $teamColors, $detailsLinkType);
+    public function getCurrentMatchweek(string $league, string $season, array $teamColors, int $detailsLinkType) : Matchweek {
+        $currentMatchweekMeta = $this->getCurrentMatchweekMeta($league);
+        return $this->getMatchweek($league, $season, $currentMatchweekMeta->getInSeasonId(), $teamColors, $detailsLinkType);
     }
 
     public function getStandings(string $league, string $season, array $teamColors) : StandingsEntryArray {
@@ -94,6 +93,7 @@ class OpenLigaDbApiClient {
             }
 
             $matchup = new Matchup();
+            $matchup->isLive = !$apiResponse->matchIsFinished && !empty($apiResponse->matchResults);
             $matchup->isFinished = $apiResponse->matchIsFinished;
             $matchup->time = date('H:i T', $dateTime);
             $matchup->homeTeamName = $apiResponse->team1->teamName;
@@ -102,7 +102,7 @@ class OpenLigaDbApiClient {
             $matchup->awayTeamNameShort = ($apiResponse->team2->shortName != '') ? $apiResponse->team2->shortName : last_word($matchup->awayTeamName);
             $matchup->homeTeamColor = $teamColors[$matchup->homeTeamNameShort];
             $matchup->awayTeamColor = $teamColors[$matchup->awayTeamNameShort];
-            if (!empty($apiResponse->matchResults)) {
+            if (!empty($apiResponse->matchResults) || $matchup->isLive) {
                 $matchup->homeTeamScore = reset($apiResponse->matchResults)->pointsTeam1;
                 $matchup->awayTeamScore = reset($apiResponse->matchResults)->pointsTeam2;
             }

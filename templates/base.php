@@ -19,13 +19,13 @@
                     </div>
                     <div class="nav-right nav-menu">
                         <a href="/" <?=($siteTitle == 'Home') ? 'class="nav-active"' : ''?>>
-                            Home
+                            <i class="icon-house"></i>&nbsp;Home
                         </a>
                         <a href="/bundesliga" <?=($siteTitle == '1. Bundesliga') ? 'class="nav-active"' : ''?>>
-                            Bundesliga
+                            <i class="icon-futbol"></i>&nbsp;Bundesliga
                         </a>
                         <a href="/nfl" <?=($siteTitle == 'NFL') ? 'class="nav-active"' : ''?>>
-                            NFL
+                        <i class="icon-football"></i>&nbsp;NFL
                         </a>
                     </div>
                     <label for="nav-hamburger-toggle" class="nav-hamburger">

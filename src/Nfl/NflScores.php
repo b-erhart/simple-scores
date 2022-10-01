@@ -12,7 +12,7 @@ $currentMatchweekInSeasonId = $openLigaDbClient->getCurrentMatchweekMeta(LEAGUE_
 $allMatchweekMetas = $openLigaDbClient->getAllMatchweekMetas(LEAGUE_NFL, SEASON)->getArray();
 
 if ($selectedWeek == '') {
-    $matchweek = $openLigaDbClient->getCurrentMatchweek(LEAGUE_NFL, NFL_TEAM_COLORS, DetailsLinkType::Nfl);
+    $matchweek = $openLigaDbClient->getCurrentMatchweek(LEAGUE_NFL, SEASON, NFL_TEAM_COLORS, DetailsLinkType::Nfl);
     $selectedWeek = $matchweek->getInSeasonId();
 }
 else {

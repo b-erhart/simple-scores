@@ -168,8 +168,10 @@ class OpenLigaDbApiClient {
         return 'https://nfl.com/games/' . $parameters['awayTeam'] . '-at-' . $parameters['homeTeam'] . '-' . $parameters['year'] . '-' . $matchupTypePrefix . '-' . $matchupId;
     }
 
-    private function generateBundesligaDetailsLink($parameters) : string {
-        return '';
+    private function generateBundesligaDetailsLink(array $parameters) : string {
+        $linkSeason = str_replace('/', '-', $parameters['year']);
+
+        return 'https://www.bundesliga.com/en/bundesliga/matchday/' . $linkSeason . '/' . $parameters['inSeasonId'] . '/' . BL_TEAM_LINK_NAMES[$parameters['homeTeam']] . '-vs-' . BL_TEAM_LINK_NAMES[$parameters['awayTeam']] . '/liveticker';
     }
 }
 ?>

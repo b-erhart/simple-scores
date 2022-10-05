@@ -106,4 +106,25 @@ const BL_TEAM_COLORS = [
     "Union Berlin" => "#c02626",
     "Wolfsburg" => "#7bb23b",
 ];
+
+const BL_TEAM_LINK_NAMES = [
+    "Augsburg" => "fc-augsburg",
+    "Bayern" => "fc-bayern-muenchen",
+    "Bochum" => "vfl-bochum-1848",
+    "Bremen" => "sv-werder-bremen",
+    "BVB" => "borussia-dortmund",
+    "Frankfurt" => "eintracht-frankfurt",
+    "Freiburg" => "sport-club-freiburg",
+    "Gladbach" => "borussia-moenchengladbach",
+    "Hertha" => "hertha-bsc",
+    "Hoffenheim" => "tsg-hoffenheim",
+    "Köln" => "1-fc-koeln",
+    "Leipzig" => "rb-leipzig",
+    "Leverkusen" => "bayer-04-leverkusen",
+    "Mainz" => "1-fsv-mainz-05",
+    "Schalke" => "fc-schalke-04",
+    "Stuttgart" => "vfb-stuttgart",
+    "Union Berlin" => "1-fc-union-berlin",
+    "Wolfsburg" => "vfl-wolfsburg",
+];
 ?>

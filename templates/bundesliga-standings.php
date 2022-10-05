@@ -14,9 +14,7 @@
                         <th>#</th>
                         <th class="standings-stretch">Team</th>
                         <th><abbr title="Matches">M</abbr></th>
-                        <th class="standings-optional"><abbr title="Wins">W</abbr></th>
-                        <th class="standings-optional"><abbr title="Draws">D</abbr></th>
-                        <th class="standings-optional"><abbr title="Losses">L</abbr></th>
+                        <th class="standings-optional"><abbr title="Wins-Draws-Losses">W-D-L</abbr></th>
                         <th><abbr title="Goals">G</abbr></th>
                         <th class="standings-optional"><abbr title="Net Goals">NG</abbr></th>
                         <th><abbr title="Points">Pts</abbr></th>
@@ -26,9 +24,7 @@
                         <td><?=($previousTablePoints != $standing->tablePoints || $previousNetPoints != $standing->netPoints) ? $rank = $i : $rank?>.</td>
                         <td><div class="team-badge" style="--team-color: <?=$standing->teamColor?>"><?=$standing->team?></div></td>
                         <td><?=$standing->matches?></td>
-                        <td class="standings-optional"><?=$standing->wins?></td>
-                        <td class="standings-optional"><?=$standing->ties?></td>
-                        <td class="standings-optional"><?=$standing->losses?></td>
+                        <td class="standings-optional"><?=$standing->wins?>-<?=$standing->ties?>-<?=$standing->losses?></td>
                         <td><?=$standing->pointsFor . ':' . $standing->pointsAgainst?></td>
                         <td class="standings-optional"><?=$standing->netPoints?></td>
                         <td><strong><?=$standing->tablePoints?></strong></td>

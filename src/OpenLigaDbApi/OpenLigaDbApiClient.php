@@ -82,13 +82,13 @@ class OpenLigaDbApiClient {
                 $firstIteration = false;
             }
 
-            if (date('l, j. F Y', $previousDateTime) != date('l, j. F Y', $dateTime)) {
+            if (date('l, F jS Y', $previousDateTime) != date('l, F jS Y', $dateTime)) {
                 if ($previousDateTime != 0) {
                     $matchweek->addMatchday($matchday);
                     $matchday = new Matchday();
                 }
 
-                $matchday->setDate(date('l, j. F Y', $dateTime));
+                $matchday->setDate(date('l, F jS Y', $dateTime));
                 $previousDateTime = $dateTime;
             }
 

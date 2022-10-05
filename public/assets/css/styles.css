@@ -115,6 +115,7 @@ abbr {
     width: fit-content;
     padding: 0.2rem 0.4rem;
     border-radius: var(--border-radius);
+    white-space: nowrap;
     color: #ffffff;
     background: var(--internal-team-color);
 }

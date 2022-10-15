@@ -353,6 +353,10 @@ nav {
     margin: 0;
 }
 
+.score-time.live {
+    color: var(--color-secondary);
+}
+
 .score-teams {
     display: grid;
     grid-template-columns: 37.5% 25% 37.5%;

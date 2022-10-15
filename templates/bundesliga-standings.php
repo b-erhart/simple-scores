@@ -1,7 +1,8 @@
 <?php include(__DIR__ . '/../src/Bundesliga/BundesligaStandings.php'); ?>
             <nav class="local-nav">
                 <div class="local-nav-items">
-                    <a href="/bundesliga">Scores</a>
+                    <a href="/bundesliga">Schedule</a>
+                    <a href="/bundesliga/scores">Scores</a>
                     <a class="local-nav-active">Standings</a>
                 </div>
             </nav>

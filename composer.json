@@ -1,7 +1,8 @@
 {
     "require": {
         "guzzlehttp/guzzle": "^7.5",
-        "steampixel/simple-php-router": "^0.7.0"
+        "steampixel/simple-php-router": "^0.7.0",
+        "ext-json": "*"
     },
     "config": {
         "platform-check": false

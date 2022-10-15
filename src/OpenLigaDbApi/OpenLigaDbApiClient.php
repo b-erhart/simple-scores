@@ -153,7 +153,7 @@ class OpenLigaDbApiClient {
                 return $this->generateBundesligaDetailsLink($parameters);
         }
 
-        return null;
+        return "";
     }
 
     private function generateNflDetailsLink(array $parameters) : string {

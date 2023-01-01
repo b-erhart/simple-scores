@@ -1,8 +1,8 @@
 <?php include(__DIR__ . '/../src/Nfl/NflScores.php'); ?>
             <nav class="local-nav">
                 <div class="local-nav-items">
-                    <a <?=$showScores ? 'href="/nfl"' : 'class="local-nav-active"'?>>Schedule</a>
-                    <a <?=$showScores ? 'class="local-nav-active"' : 'href="/nfl/scores"'?>>Scores</a>
+                    <a <?=$showScores ? 'href="/nfl/' . $selectedWeek . '"' : 'class="local-nav-active"'?>>Schedule</a>
+                    <a <?=$showScores ? 'class="local-nav-active"' : 'href="/nfl/scores/' . $selectedWeek . '"'?>>Scores</a>
                     <a href="/nfl/standings">Standings</a>
                 </div>
             </nav>
@@ -11,7 +11,7 @@
 <?php if (!isset($webServiceException)): ?>
             <select id="week" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
 <?php foreach($allMatchweekMetas as $matchweekMeta): ?>
-                <option <?=($selectedWeek == $matchweekMeta->getInSeasonId()) ? 'selected ' : ''?>value="<?='/nfl/' . $matchweekMeta->getInSeasonId()?>"><?=$matchweekMeta->getName()?><?=($matchweekMeta->getInSeasonId() == $currentMatchweekInSeasonId) ? ' (now)' : ''?></option>
+                <option <?=($selectedWeek == $matchweekMeta->getInSeasonId()) ? 'selected ' : ''?>value="<?='/nfl/scores/' . $matchweekMeta->getInSeasonId()?>"><?=$matchweekMeta->getName()?><?=($matchweekMeta->getInSeasonId() == $currentMatchweekInSeasonId) ? ' (now)' : ''?></option>
 <?php endforeach; ?>
             </select>
             <h1>NFL - <?=$matchweek->getName()?></h1>

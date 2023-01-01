@@ -14,7 +14,6 @@ Route::add('/bundesliga', function() {
     $selectedWeek = '';
     $siteTitle = '1. Bundesliga';
     $content = '../templates/bundesliga-scores.php';
-    $showScores = false;
     include('../templates/base.php');
 });
 
@@ -39,11 +38,18 @@ Route::add('/bundesliga/([0-9]*)', function($id) {
     include('../templates/base.php');
 });
 
+Route::add('/bundesliga/scores/([0-9]*)', function($id) {
+    $selectedWeek = $id;
+    $siteTitle = '1. Bundesliga';
+    $content = '../templates/bundesliga-scores.php';
+    $showScores = true;
+    include('../templates/base.php');
+});
+
 Route::add('/nfl', function() {
     $selectedWeek = '';
     $siteTitle = 'NFL';
     $content = '../templates/nfl-scores.php';
-    $showScores = false;
     include('../templates/base.php');
 });
 
@@ -65,6 +71,14 @@ Route::add('/nfl/([0-9]*)', function($id) {
     $selectedWeek = $id;
     $siteTitle = 'NFL';
     $content = '../templates/nfl-scores.php';
+    include('../templates/base.php');
+});
+
+Route::add('/nfl/scores/([0-9]*)', function($id) {
+    $selectedWeek = $id;
+    $siteTitle = 'NFL';
+    $content = '../templates/nfl-scores.php';
+    $showScores = true;
     include('../templates/base.php');
 });
 

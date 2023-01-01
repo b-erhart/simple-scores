@@ -11,7 +11,7 @@
 <?php if (!isset($webServiceException)): ?>
             <select id="week" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
 <?php foreach($allMatchweekMetas as $matchweekMeta): ?>
-                <option <?=($selectedWeek == $matchweekMeta->getInSeasonId()) ? 'selected ' : ''?>value="<?='/nfl/scores/' . $matchweekMeta->getInSeasonId()?>"><?=$matchweekMeta->getName()?><?=($matchweekMeta->getInSeasonId() == $currentMatchweekInSeasonId) ? ' (now)' : ''?></option>
+                <option <?=($selectedWeek == $matchweekMeta->getInSeasonId()) ? 'selected ' : ''?>value="<?='/nfl/' . ($showScores ? 'scores/' : '') . $matchweekMeta->getInSeasonId()?>"><?=$matchweekMeta->getName()?><?=($matchweekMeta->getInSeasonId() == $currentMatchweekInSeasonId) ? ' (now)' : ''?></option>
 <?php endforeach; ?>
             </select>
             <h1>NFL - <?=$matchweek->getName()?></h1>

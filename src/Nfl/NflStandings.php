@@ -35,7 +35,7 @@ function sort_standings($a, $b) : int {
 }
 
 const LEAGUE_NFL = 'nfl';
-const SEASON = '2022';
+const SEASON = '2023';
 
 $openLigaDbClient = new OpenLigaDbApiClient();
 

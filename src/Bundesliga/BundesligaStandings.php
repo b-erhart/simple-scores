@@ -2,7 +2,7 @@
 use SimpleScores\OpenLigaDbApi\OpenLigaDbApiClient;
 
 const LEAGUE_BL = 'bl1';
-const SEASON = '2022';
+const SEASON = '2023';
 
 $openLigaDbClient = new OpenLigaDbApiClient();
 

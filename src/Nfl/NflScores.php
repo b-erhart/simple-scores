@@ -3,7 +3,7 @@ use SimpleScores\OpenLigaDbApi\OpenLigaDbApiClient;
 use SimpleScores\OpenLigaDbApi\DetailsLinkType;
 
 const LEAGUE_NFL = 'nfl';
-const SEASON = '2022';
+const SEASON = '2023';
 
 try {
     $openLigaDbClient = new OpenLigaDbApiClient();
